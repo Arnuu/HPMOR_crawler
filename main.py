@@ -11,6 +11,7 @@ logging.basicConfig(format="%(asctime)s: %(message)s", level=logging.INFO)
 
 BASE_URL = "https://www.hpmor.com/chapter/"
 
+
 def crawlChapter(chapter_nr: int) -> Dict[int, str]:
     """
     A function to crawl a specific HPMOR chapter.
