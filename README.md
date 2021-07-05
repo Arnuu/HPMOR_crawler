@@ -17,3 +17,16 @@ Specify which chapters this script should download with:
 `python3 main.py -s START_CHAPTER -e END_CHAPTER`
 
 The output is saved to a JSON file called: *crawled.json*.
+
+```
+usage: main.py [-h] [-s START_CHAPTER] [-e END_CHAPTER]
+
+A tool to crawl specific chapters from hpmor.com. The results are saved to a JSON file.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s START_CHAPTER, --start_chapter START_CHAPTER
+                        An integer to indicate the first chapter that shall be crawled.
+  -e END_CHAPTER, --end_chapter END_CHAPTER
+                        An integer to indicate the last chapter that shall be crawled.
+```
