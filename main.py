@@ -44,7 +44,8 @@ def crawlChapter(chapter_nr: int) -> Dict[int, str]:
         par_text = p.text
         # clean the result text
         par_text = par_text.replace("\n", " ")
-        paragraph_dict[i] = p.text
+        par_text = par_text.replace("  ", " ")
+        paragraph_dict[i] = par_text
 
     return paragraph_dict
 
@@ -69,6 +70,12 @@ if __name__ == "__main__":
         default=21,
         required=False,
     )
+    parser.add_argument(
+        "-t",
+        "--dump-as-txt",
+        help="If this flag is set, the text is saved as a .txt file instead of a json file.",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     start_i = args.start_chapter
@@ -85,5 +92,14 @@ if __name__ == "__main__":
         if result != {}:
             chapter_dict[i] = result
 
-    with open("crawled.json", "w+") as f:
-        json.dump(chapter_dict, f)
+    if args.dump_as_txt:
+        with open("crawled.txt", "w+") as f:
+            for key, val in chapter_dict.items():
+                f.write(f"---Chapter {key}---\n")
+                for ikey, ival in val.items():
+                    f.write(ival)
+                    f.write("\n")
+                f.write("\n")
+    else:
+        with open("crawled.json", "w+") as f:
+            json.dump(chapter_dict, f)
